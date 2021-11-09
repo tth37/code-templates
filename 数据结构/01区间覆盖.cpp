@@ -38,3 +38,4 @@ struct Data_structure {
         if (a[l - 1]) f[findf(l - 1)] = findf(r);
     }
 } T;
+233
