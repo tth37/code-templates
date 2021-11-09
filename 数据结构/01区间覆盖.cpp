@@ -2,9 +2,6 @@
 #include <iostream>
 using namespace std;
 
-#include <bits/stdc++.h>
-using namespace std;
-
 const int N = 2e6 + 5;
 
 struct Data_structure {
@@ -38,4 +35,3 @@ struct Data_structure {
         if (a[l - 1]) f[findf(l - 1)] = findf(r);
     }
 } T;
-233
