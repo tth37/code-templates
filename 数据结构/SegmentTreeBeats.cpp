@@ -52,27 +52,27 @@ struct Segment_Tree_Beats {
         pushup(u);
     }
     // 查询区间 [ql, qr] 和
-    ll query_sum(int u, int l, int r, int ql, int qr) {
+    ll querySum(int u, int l, int r, int ql, int qr) {
         if (ql <= l && r <= qr) {
             return s(u);
         }
         pushdown(u);
         int mid = (l + r) >> 1;
         ll ret = 0;
-        if (ql <= mid) ret += query_sum(lson(u), l, mid, ql, qr);
-        if (mid < qr) ret += query_sum(rson(u), mid + 1, r, ql, qr);
+        if (ql <= mid) ret += querySum(lson(u), l, mid, ql, qr);
+        if (mid < qr) ret += querySum(rson(u), mid + 1, r, ql, qr);
         return ret;
     }
     // 查询区间 [ql, qr] 最大值
-    int query_max(int u, int l, int r, int ql, int qr) {
+    int queryMax(int u, int l, int r, int ql, int qr) {
         if (ql <= l && r <= qr) {
             return mx(u);
         }
         pushdown(u);
         int mid = (l + r) >> 1;
         int ret = -1;
-        if (ql <= mid) ret = max(ret, query_max(lson(u), l, mid, ql, qr));
-        if (mid < qr) ret = max(ret, query_max(rson(u), mid + 1, r, ql, qr));
+        if (ql <= mid) ret = max(ret, queryMax(lson(u), l, mid, ql, qr));
+        if (mid < qr) ret = max(ret, queryMax(rson(u), mid + 1, r, ql, qr));
         return ret;
     }
     // 标记下传
