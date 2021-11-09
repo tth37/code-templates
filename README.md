@@ -1,18 +1,18 @@
-代码模板需要提供接口、用法的注释。
+## ACM-CPC 代码模板库
 
-例如：
-
-```cpp
-// 数据结构-线段树
-struct Segment_Tree {
-    void modify(int u, int l, int r, int p, int x) {
-        
-    }
-} T;
-
-/*
-单点修改：T.modify(T.R, 1, n, p, x);
-区间查询：T.query(T.R, 1, n, l, r);
-*/
 ```
-
+code-templates
+  │  cf-template.cpp
+  │  README.md
+  │  
+  ├─数据结构
+  │      01区间覆盖.cpp
+  │      SegmentTreeBeats.cpp
+  │      ST表.cpp
+  │      主席树.cpp
+  │      树状数组.cpp
+  │      线段树.cpp
+  │      莫队.cpp
+  │      
+  └─数论
+```
