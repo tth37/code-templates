@@ -1,0 +1,62 @@
+\documentclass[UTF8]{article}
+\usepackage{amsmath}
+\usepackage{xeCJK}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{minted}
+\usepackage{geometry}
+\title{Untitled template codes}
+\author{tth37,luckyyou,rabbyte}
+\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+\pagestyle{fancy}
+\cfoot{第 \thepage 页 \qquad 共 \color{blue}{\pageref{LastPage}} \color{black} 页}
+\begin{document}
+    \maketitle
+    \setcounter{page}{0}
+    \thispagestyle{empty}
+    \clearpage
+    \tableofcontents
+    \clearpage
+    \section{数学}
+        \subsection{数论}
+            \subsubsection{扩展欧拉函数}
+            $$
+            a^b\equiv
+            \begin{cases}
+                a^{b\bmod\varphi(p)} & \gcd(a,p)=1\\
+                a^b,\gcd(a,\,p)\ne1 & b<\varphi(p)\\
+                a^{b\bmod\varphi(p)+\varphi(p)} & \gcd(a,\,p)\ne1,b\ge\varphi(p)
+            \end{cases}
+            \pmod p
+            $$
+            \subsubsection{线性筛与积性函数}
+            \begin{minted}[mathescape]{cpp}
+#include<cstring>
+const int N = 1e6 + 10;
+int phi[N], mu[N], primes[N], cnt = 0;
+bool is_prime[N];
+void linear_sieve(int n) {
+    phi[1] = 1; mu[1] = 1;
+    memset(is_prime, true, sizeof is_prime); is_prime[1] = false;
+    for (int i = 2; i <= n; i++) {
+        if (is_prime[i]) {
+            primes[++cnt] = i;
+            phi[i] = i - 1;
+            mu[i] = -1;
+        }
+        for (int j = 1; j <= cnt && i * primes[j] <= n; j++) {
+            is_prime[i * primes[j]] = false;
+            if (i % primes[j]) {
+                phi[i * primes[j]] = phi[i] * phi[primes[j]];
+                mu[i * primes[j]] = -mu[i];
+            }
+            else {
+                phi[i * primes[j]] = phi[i] * primes[j]; //$\varphi (p^n) = p^n - p^{n-1}$
+                mu[i * primes[j]] = 0;
+                break;
+            }
+        }
+    }
+}
+            \end{minted}
+\end{document}
